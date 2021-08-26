@@ -229,6 +229,7 @@ contract customEscrow2 {
             IERC20(token).transfer(temp.seller,_temp-OwnerCut-_PoolCut-_adminCut-_burnCut);
             IERC20(token).transfer(admin,_adminCut);
             IERC20(token).transfer(owner,OwnerCut);
+            IPancakeRouter02(liquidityPool).addLiquidityETH(token,_PoolCut,_PoolCut,_PoolCut,address(this),block.timestamp+1000000);
         }
         getEscrow[_id].buyerConfirmation=true;
         getEscrow[_id].currentState = State.paid;
